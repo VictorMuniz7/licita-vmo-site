@@ -1,0 +1,157 @@
+<header class="escuro bg-abismo text-claro">
+  <div class="wrap flex h-[68px] items-center justify-between gap-4">
+    <a routerLink="/" aria-label="Início"><app-logo tom="escuro" [tamanho]="34" /></a>
+    <ol class="hidden items-center gap-3 text-sm sm:flex" aria-label="Etapas">
+      <li class="flex items-center gap-2 text-claro-suave"><span class="grid h-6 w-6 place-items-center bg-pentagono text-xs font-bold text-white">✓</span> Conta</li>
+      <li class="h-px w-6 bg-claro-suave/40"></li>
+      <li class="flex items-center gap-2" [class.text-ciano]="passo() === 'empresa'" [class.text-claro-suave]="passo() !== 'empresa'">
+        <span class="grid h-6 w-6 place-items-center text-xs font-bold" [class]="passo() === 'empresa' ? 'bg-ciano text-abismo' : 'bg-pentagono text-white'">{{ passo() === 'empresa' ? '2' : '✓' }}</span> Empresa
+      </li>
+      <li class="h-px w-6 bg-claro-suave/40"></li>
+      <li class="flex items-center gap-2" [class.text-ciano]="passo() === 'pagamento'" [class.text-claro-suave]="passo() !== 'pagamento'">
+        <span class="grid h-6 w-6 place-items-center text-xs font-bold" [class]="passo() === 'pagamento' ? 'bg-ciano text-abismo' : 'bg-petroleo-3 text-claro'">3</span> Pagamento
+      </li>
+    </ol>
+    <a routerLink="/planos" class="text-sm font-semibold text-claro-2 hover:text-ciano">Trocar plano</a>
+  </div>
+</header>
+
+<main class="min-h-[calc(100svh-68px)] bg-nevoa">
+  @if (!portal.carregado()) {
+    <p class="wrap py-20 text-tinta-suave">Carregando…</p>
+  } @else {
+    <div class="wrap grid gap-8 py-10 md:py-14 lg:grid-cols-[1.25fr_.75fr]">
+
+      <section>
+        @if (portal.conta() && !portal.ehTitular()) {
+          <div class="cartao">
+            <h1 class="subtitulo text-2xl">Só o titular pode contratar</h1>
+            <p class="mt-3 text-tinta-2">Seu usuário faz parte da conta <b>{{ portal.conta()?.company_name }}</b>. Peça ao titular para mudar o plano pelo painel dele.</p>
+            <a routerLink="/painel" class="btn btn-escuro mt-6">Ir para o painel</a>
+          </div>
+        } @else if (passo() === 'empresa') {
+          <h1 class="titulo text-[clamp(1.7rem,2.6vw,2.3rem)]">Dados da empresa</h1>
+          <p class="mt-2 text-tinta-2">Os serviços são contratados por CNPJ. Esses dados vão na nota e na fatura.</p>
+
+          <form class="cartao mt-8 grid gap-5 sm:grid-cols-6" (ngSubmit)="salvarEmpresa()" #f="ngForm">
+            <label class="campo sm:col-span-3">
+              <span>CNPJ</span>
+              <input class="input" name="cnpj" inputmode="numeric" required [ngModel]="empresa.cnpj"
+                     (ngModelChange)="empresa.cnpj = mCnpj($event)" placeholder="00.000.000/0000-00" #cnpj="ngModel">
+              @if (cnpj.touched && empresa.cnpj.length >= 18 && !cnpjOk()) { <small class="text-xs font-semibold text-erro">CNPJ inválido</small> }
+            </label>
+            <label class="campo sm:col-span-3">
+              <span>Telefone / WhatsApp</span>
+              <input class="input" name="phone" inputmode="tel" required [ngModel]="empresa.phone"
+                     (ngModelChange)="empresa.phone = mTel($event)" placeholder="(44) 99999-9999" autocomplete="tel">
+            </label>
+            <label class="campo sm:col-span-6">
+              <span>Razão social</span>
+              <input class="input" name="company_name" required minlength="3" [(ngModel)]="empresa.company_name" autocomplete="organization">
+            </label>
+            <label class="campo sm:col-span-6">
+              <span>Nome fantasia <em class="font-normal not-italic text-tinta-suave">(opcional)</em></span>
+              <input class="input" name="trade_name" [(ngModel)]="empresa.trade_name">
+            </label>
+            <label class="campo sm:col-span-6">
+              <span>E-mail para faturas</span>
+              <input class="input" type="email" name="billing_email" required email [(ngModel)]="empresa.billing_email">
+            </label>
+            <label class="campo sm:col-span-2">
+              <span>CEP</span>
+              <input class="input" name="cep" inputmode="numeric" required [ngModel]="empresa.address_zip"
+                     (ngModelChange)="empresa.address_zip = mCep($event)" placeholder="87000-000" autocomplete="postal-code">
+            </label>
+            <label class="campo sm:col-span-3">
+              <span>Cidade</span>
+              <input class="input" name="cidade" required [(ngModel)]="empresa.address_city" autocomplete="address-level2">
+            </label>
+            <label class="campo sm:col-span-1">
+              <span>UF</span>
+              <select class="input" name="uf" required [(ngModel)]="empresa.address_state">
+                <option value="" disabled>—</option>
+                @for (u of ufs; track u) { <option [value]="u">{{ u }}</option> }
+              </select>
+            </label>
+            @if (erro()) { <p class="aviso aviso-erro sm:col-span-6" role="alert">{{ erro() }}</p> }
+            <div class="sm:col-span-6">
+              <button class="btn btn-escuro w-full py-3.5 sm:w-auto sm:px-10" [disabled]="enviando() || f.invalid">
+                {{ enviando() ? 'Salvando…' : 'Continuar para o pagamento' }}
+              </button>
+            </div>
+          </form>
+        } @else {
+          <h1 class="titulo text-[clamp(1.7rem,2.6vw,2.3rem)]">Pagamento</h1>
+          <p class="mt-2 text-tinta-2">{{ portal.conta()?.company_name }} · CNPJ {{ mCnpj(portal.conta()?.cnpj ?? '') }}</p>
+
+          <div class="cartao mt-8 grid gap-5">
+            @if (trocado()) {
+              <p class="aviso aviso-ok">Plano trocado para <b>{{ plano()?.name }}</b>. O novo valor vale a partir da próxima fatura.</p>
+              <a routerLink="/painel" class="btn btn-escuro justify-self-start">Ir para o painel</a>
+            } @else if (reativado()) {
+              <p class="aviso aviso-ok">Assinatura reativada no plano <b>{{ plano()?.name }}</b>. Nada foi cobrado agora: a próxima fatura vence em {{ dt(reativado()) }}.</p>
+              <a routerLink="/painel" class="btn btn-escuro justify-self-start">Ir para o painel</a>
+            } @else if (reativacao()) {
+              <p class="text-tinta-2">Sua assinatura foi cancelada, mas o período que você já pagou vai até <b>{{ dt(reativacao()) }}</b>. Ao reativar, <b>nada é cobrado agora</b>: a primeira fatura de {{ reais(plano()?.price_cents) }} vence em {{ dt(reativacao()) }}.</p>
+              @if (portal.planoAtual()?.includes_licita && !plano()?.includes_licita) {
+                <p class="aviso aviso-atencao">O plano novo não inclui o Licita-VMO. Os usuários da sua conta perdem o acesso ao sistema na hora.</p>
+              }
+              @if (erro()) { <p class="aviso aviso-erro" role="alert">{{ erro() }}</p> }
+              <button class="btn btn-ciano justify-self-start py-3.5" (click)="pagar()" [disabled]="enviando()">{{ enviando() ? 'Reativando…' : 'Reativar assinatura' }}</button>
+            } @else if (sub()?.plan_id === planoId() && sub()?.status !== 'pending') {
+              <p class="aviso aviso-ok">Você já tem o plano <b>{{ plano()?.name }}</b>.</p>
+              <a routerLink="/painel" class="btn btn-escuro justify-self-start">Ir para o painel</a>
+            } @else if (sub() && sub()?.status !== 'pending') {
+              <p class="text-tinta-2">Seu plano hoje é <b>{{ portal.planoAtual()?.name }}</b>. Ao confirmar, ele muda para <b>{{ plano()?.name }}</b> e a próxima fatura sai com o novo valor, {{ reais(plano()?.price_cents) }}.</p>
+              @if (portal.planoAtual()?.includes_licita && !plano()?.includes_licita) {
+                <p class="aviso aviso-atencao">O plano novo não inclui o Licita-VMO. Os usuários da sua conta perdem o acesso ao sistema na hora.</p>
+              }
+              @if (erro()) { <p class="aviso aviso-erro" role="alert">{{ erro() }}</p> }
+              <button class="btn btn-escuro justify-self-start py-3.5" (click)="pagar()" [disabled]="enviando()">{{ enviando() ? 'Trocando…' : 'Confirmar troca de plano' }}</button>
+            } @else {
+              @if (sub()?.status === 'pending') {
+                <p class="aviso aviso-atencao">
+                  @if (sub()?.plan_id === planoId()) { Esta contratação já está aguardando pagamento. Continue de onde parou. }
+                  @else { Há uma contratação do plano {{ portal.planoAtual()?.name }} aguardando pagamento. Ao continuar, ela é substituída por esta. }
+                </p>
+              }
+              <div class="grid gap-3 sm:grid-cols-3">
+                <div class="bg-nevoa px-4 py-3"><b class="block">Pix</b><small class="text-tinta-suave">libera em minutos</small></div>
+                <div class="bg-nevoa px-4 py-3"><b class="block">Cartão</b><small class="text-tinta-suave">recorrente, sem digitar todo mês</small></div>
+                <div class="bg-nevoa px-4 py-3"><b class="block">Boleto</b><small class="text-tinta-suave">libera em até 2 dias úteis</small></div>
+              </div>
+              <p class="text-sm text-tinta-2">Você escolhe a forma de pagamento na fatura segura do Asaas, nosso parceiro de cobrança. Depois de pagar, volte ao painel: o acesso é liberado automaticamente.</p>
+              @if (demo) { <p class="aviso aviso-atencao">Modo demonstração: o pagamento é aprovado na hora, sem cobrança real.</p> }
+              @if (erro()) { <p class="aviso aviso-erro" role="alert">{{ erro() }}</p> }
+              <button class="btn btn-ciano w-full py-4 text-base sm:w-auto sm:px-10" (click)="pagar()" [disabled]="enviando()">
+                {{ enviando() ? 'Gerando fatura…' : 'Pagar ' + reais(plano()?.price_cents, false) }}
+              </button>
+            }
+          </div>
+        }
+      </section>
+
+      <!-- Resumo -->
+      @if (plano(); as p) {
+        <aside class="lg:sticky lg:top-8 lg:self-start">
+          <div class="chanfro chanfro-g bg-petroleo p-6 text-claro">
+            <p class="rotulo text-ciano">Resumo</p>
+            <h2 class="subtitulo mt-2 text-2xl">{{ p.name }}</h2>
+            <p class="mt-1 text-sm text-claro-2">{{ p.tagline }}</p>
+            <ul class="escuro mt-5 grid gap-2 text-sm text-claro-2">
+              @for (f of p.features; track f) { <li class="marcador">{{ f }}</li> }
+            </ul>
+            <dl class="mt-6 grid gap-2 border-t border-[rgba(53,208,211,.2)] pt-4 text-sm">
+              <div class="flex justify-between"><dt>Mensalidade</dt><dd>{{ reais(p.price_cents, false) }}</dd></div>
+              <div class="flex justify-between"><dt>Adesão</dt><dd>R$ 0,00</dd></div>
+              <div class="mt-2 flex items-baseline justify-between border-t border-[rgba(53,208,211,.2)] pt-3">
+                <dt class="font-bold">Hoje</dt><dd class="num text-3xl text-ciano">{{ reais(reativacao() || reativado() ? 0 : p.price_cents, false) }}</dd>
+              </div>
+            </dl>
+            <p class="mt-4 text-xs text-claro-suave">Cobrança mensal no mesmo dia. Sem fidelidade: cancele quando quiser pelo painel.</p>
+          </div>
+        </aside>
+      }
+    </div>
+  }
+</main>

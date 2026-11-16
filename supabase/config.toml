@@ -1,0 +1,14 @@
+# Trecho de configuração das Edge Functions do portal.
+# Se você já tem um config.toml do projeto Licita-VMO, copie só estes blocos para ele.
+
+[functions.asaas-webhook]
+verify_jwt = false   # o Asaas autentica pelo header asaas-access-token
+
+[functions.criar-checkout]
+verify_jwt = true
+
+[functions.cancelar-assinatura]
+verify_jwt = true
+
+[functions.gerenciar-usuarios]
+verify_jwt = true

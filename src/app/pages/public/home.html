@@ -1,0 +1,318 @@
+<app-site-header />
+
+<main>
+  <!-- HERO -->
+  <section class="escuro grade-fundo relative overflow-hidden bg-abismo text-claro">
+    <div class="pointer-events-none absolute -right-48 -top-48 h-[680px] w-[680px] opacity-[.08]" aria-hidden="true">
+      <svg viewBox="0 0 600 600"><polygon points="300,20 580,224 473,553 127,553 20,224" fill="none" stroke="#35D0D3" stroke-width="8"/><polygon points="300,120 485,255 414,473 186,473 115,255" fill="none" stroke="#1396A3" stroke-width="6"/></svg>
+    </div>
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-abismo" aria-hidden="true"></div>
+
+    <div class="wrap relative grid items-center gap-14 py-16 md:py-24 lg:grid-cols-[1.12fr_.88fr]">
+      <div>
+        <p class="mb-6 inline-flex items-center gap-2 bg-[rgba(53,208,211,.1)] px-3 py-1.5 text-[.8rem] font-bold text-ciano ring-1 ring-inset ring-[rgba(53,208,211,.25)]" style="font-stretch:92%">
+          <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping bg-ciano opacity-60"></span><span class="relative inline-flex h-2 w-2 bg-ciano"></span></span>
+          Para empresas que vendem para o governo
+        </p>
+        <h1 class="display text-[clamp(2.3rem,4.3vw,4.1rem)]">
+          As licitações que a sua empresa pode ganhar, <span class="text-ciano">no seu WhatsApp.</span>
+        </h1>
+        <p class="mt-6 max-w-[54ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-claro-2">
+          Todo dia de manhã você recebe os editais do seu ramo e da sua região, resumidos em texto e em áudio,
+          com o que falta nos seus documentos. A sua equipe organiza processo, certidões e proposta no Licita-VMO.
+          Contrate um ou os dois, online, sem fidelidade.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a routerLink="/planos" class="btn btn-ciano px-7 py-3.5 text-base">
+            Ver planos e contratar
+            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a routerLink="/" fragment="como-funciona" class="btn btn-fantasma px-7 py-3.5 text-base">Como funciona</a>
+        </div>
+        <dl class="mt-11 grid max-w-[34rem] grid-cols-3 border-t border-[rgba(53,208,211,.18)] pt-6">
+          <div><dt class="text-xs text-claro-suave">Mensal, a partir de</dt><dd class="num mt-1.5 whitespace-nowrap text-[1.45rem] sm:text-[1.6rem]">R$ 97</dd></div>
+          <div class="border-l border-[rgba(53,208,211,.18)] pl-5"><dt class="text-xs text-claro-suave">Por CNPJ</dt><dd class="num mt-1.5 text-[1.6rem]">4 <span class="text-sm font-semibold tracking-normal text-claro-suave">usuários</span></dd></div>
+          <div class="border-l border-[rgba(53,208,211,.18)] pl-5"><dt class="text-xs text-claro-suave">Pagamento</dt><dd class="mt-2 text-[.95rem] font-bold leading-tight">Pix, boleto<br class="sm:hidden"> ou cartão</dd></div>
+        </dl>
+      </div>
+
+      <!-- Simulação do WhatsApp -->
+      <figure class="relative justify-self-center w-full max-w-[400px]">
+        <div class="brilho pointer-events-none absolute -inset-10" aria-hidden="true"></div>
+        <div class="chanfro chanfro-g relative bg-petroleo-2 pb-3 ring-1 ring-inset ring-[rgba(53,208,211,.15)]">
+          <div class="flex items-center gap-3 bg-petroleo-3 px-4 py-3">
+            <span class="grid h-9 w-9 place-items-center bg-ciano text-[.8rem] font-extrabold text-abismo" aria-hidden="true">RL</span>
+            <div class="leading-tight">
+              <b class="block text-[.92rem]">Radar Licita-VMO</b>
+              <small class="text-[.72rem] text-claro-suave">Alertas da Limpa Bem Distribuidora</small>
+            </div>
+            <span class="ml-auto text-[.68rem] font-bold text-ciano">online</span>
+          </div>
+          <div class="grid gap-2 px-3 pt-3 text-[.82rem] leading-snug">
+            <div class="max-w-[88%] justify-self-start bg-[#F4FAFB] px-3 py-2 text-tinta">
+              <b>Nova licitação compatível:</b>
+              <ul class="mt-1.5 grid gap-1">
+                <li class="marcador">Pregão 045/2026, Prefeitura de Exemplo (PR)</li>
+                <li class="marcador">Material de limpeza, 12 lotes, R$ 418.600</li>
+                <li class="marcador">Sessão em 10/11, às 9h</li>
+                <li class="marcador">8 de 9 documentos prontos</li>
+                <li class="marcador font-bold text-ambar-texto">A certidão federal vence em 05/11</li>
+              </ul>
+              <time class="mt-1 block text-right text-[.68rem] opacity-60">06:00</time>
+            </div>
+            <div class="max-w-[88%] justify-self-start bg-[#F4FAFB] px-3 py-2 text-tinta">
+              <p class="text-[.7rem] font-bold text-pentagono">Resumo do edital em áudio</p>
+              <div class="mt-1 flex min-w-[200px] items-center gap-2" aria-label="Áudio de 1 minuto e 42 segundos">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 text-pentagono" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                <span class="h-4 flex-1 opacity-70" style="background:repeating-linear-gradient(90deg,#1396A3 0 2px,transparent 2px 5px)"></span>
+                <span class="text-[.72rem]">1:42</span>
+              </div>
+              <time class="mt-1 block text-right text-[.68rem] opacity-60">06:00</time>
+            </div>
+            <div class="max-w-[80%] justify-self-end bg-[#16555C] px-3 py-2 text-[#F0FBFB]">Precisa de amostra?<time class="mt-1 block text-right text-[.68rem] opacity-60">07:15</time></div>
+            <div class="max-w-[88%] justify-self-start bg-[#F4FAFB] px-3 py-2 text-tinta">Sim. Amostra do lote 3 em até 2 dias úteis após a sessão, no almoxarifado central (pág. 31).<time class="mt-1 block text-right text-[.68rem] opacity-60">07:15</time></div>
+            <div class="max-w-[80%] justify-self-end bg-[#16555C] px-3 py-2 text-[#F0FBFB]">Vamos participar<time class="mt-1 block text-right text-[.68rem] opacity-60">07:16</time></div>
+            <p class="justify-self-center px-2 text-center text-[.72rem] text-ciano">Processo criado no Licita-VMO. Lembretes: impugnação 03/11, sessão 10/11.</p>
+          </div>
+        </div>
+        <figcaption class="relative mt-4 text-center text-xs text-claro-suave">Simulação com empresa e edital fictícios.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- POR QUE AGORA -->
+  <section class="escuro bg-abismo text-claro">
+    <div class="wrap pb-16 pt-6 md:pb-24">
+      <div class="chanfro chanfro-g bg-petroleo px-6 py-10 sm:px-10 md:py-14">
+        <div class="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p class="rotulo-sec">Por que agora</p>
+            <h2 class="titulo mt-3 max-w-[22ch] text-[clamp(1.8rem,3vw,2.7rem)]">Tem licitação para empresas do seu tamanho. E em janeiro tem mais.</h2>
+          </div>
+        </div>
+        <div class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="stat revelar border-t-[6px] border-pentagono pt-5">
+            <p class="num stat-num">R$ 1 tri</p>
+            <p class="mt-3 text-[.95rem] text-claro-2">em compras públicas homologadas em 2025. Prefeituras, estados e União compram de tudo, o ano inteiro.</p>
+          </div>
+          <div class="stat revelar border-t-[6px] border-pentagono pt-5">
+            <p class="num stat-num">40 mil</p>
+            <p class="mt-3 text-[.95rem] text-claro-2">pregões e concorrências eletrônicas por mês no portal nacional. A sua equipe não precisa ler tudo: o radar separa o que é seu.</p>
+          </div>
+          <div class="stat revelar border-t-[6px] border-ambar pt-5">
+            <p class="num stat-num text-ambar">R$ 131 mil</p>
+            <p class="mt-3 text-[.95rem] text-claro-2">é o novo teto das licitações exclusivas para micro e pequenas empresas a partir de 1º de janeiro de 2027 (hoje é R$ 80 mil). Mais disputas reservadas para ME e EPP.</p>
+          </div>
+          <div class="stat revelar border-t-[6px] border-pentagono pt-5">
+            <p class="num stat-num">42,7%</p>
+            <p class="mt-3 text-[.95rem] text-claro-2">das compras públicas no Paraná em 2025 ficaram com micro e pequenas empresas. Não é preciso ser grande para vender ao governo.</p>
+          </div>
+        </div>
+        <p class="mt-10 text-xs text-claro-suave">Fontes: Ministério da Gestão (jan. 2026), PNCP, Lei Complementar 238/2026 e Sebrae PR.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="scroll-mt-20 bg-nevoa">
+    <div class="wrap py-16 md:py-24">
+      <div class="mx-auto max-w-[60ch] text-center">
+        <p class="rotulo-sec">Dois serviços, um painel</p>
+        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Contrate só o que a sua empresa precisa.</h2>
+        <p class="mt-4 text-lg text-tinta-2">Cada serviço funciona sozinho. Juntos, a licitação encontrada pelo radar entra no Licita-VMO já preenchida.</p>
+      </div>
+
+      <div class="relative mt-12 grid gap-6 lg:grid-cols-2">
+        <article id="radar" class="cartao levanta revelar scroll-mt-24 grid content-start gap-6 p-7 sm:p-9">
+          <div class="flex items-center justify-between gap-4">
+            <span class="grid h-14 w-14 place-items-center bg-petroleo text-ciano" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg>
+            </span>
+            <span class="selo selo-neutro px-3 py-1 text-[.8rem]">a partir de R$ 97/mês</span>
+          </div>
+          <div>
+            <h3 class="subtitulo text-[1.8rem]">Radar de licitações</h3>
+            <p class="mt-2 text-tinta-2">Encontra, lê e resume os editais que combinam com a sua empresa. Tudo chega no WhatsApp, em texto e em áudio.</p>
+          </div>
+          <ul class="grid gap-3 border-t border-linha pt-6 text-[.95rem] text-tinta-2 sm:grid-cols-2">
+            @for (f of recursosRadar; track f) {
+              <li class="flex items-start gap-2.5">
+                <svg viewBox="0 0 20 20" class="mt-[3px] h-4 w-4 shrink-0 text-pentagono" fill="currentColor" aria-hidden="true"><polygon points="10,1 19,7.6 15.6,18.5 4.4,18.5 1,7.6"/></svg>{{ f }}
+              </li>
+            }
+          </ul>
+          <a routerLink="/planos" class="inline-flex items-center gap-2 font-bold text-pentagono hover:text-tinta">Ver planos com o Radar <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article id="licita" class="cartao levanta revelar scroll-mt-24 grid content-start gap-6 bg-petroleo! p-7 text-claro sm:p-9">
+          <div class="flex items-center justify-between gap-4">
+            <span class="grid h-14 w-14 place-items-center bg-ciano text-abismo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg>
+            </span>
+            <span class="selo bg-[rgba(53,208,211,.14)] px-3 py-1 text-[.8rem] text-ciano">até 4 usuários por CNPJ</span>
+          </div>
+          <div>
+            <h3 class="subtitulo text-[1.8rem]">Licita-VMO</h3>
+            <p class="mt-2 text-claro-2">Onde a sua equipe organiza cada licitação, do edital à entrega: processos, prazos, documentos e propostas.</p>
+          </div>
+          <ul class="grid gap-3 border-t border-[rgba(53,208,211,.16)] pt-6 text-[.95rem] text-claro-2 sm:grid-cols-2">
+            @for (f of recursosLicita; track f) {
+              <li class="flex items-start gap-2.5">
+                <svg viewBox="0 0 20 20" class="mt-[3px] h-4 w-4 shrink-0 text-ciano" fill="currentColor" aria-hidden="true"><polygon points="10,1 19,7.6 15.6,18.5 4.4,18.5 1,7.6"/></svg>{{ f }}
+              </li>
+            }
+          </ul>
+          <a routerLink="/planos" class="inline-flex items-center gap-2 font-bold text-ciano hover:text-claro">Ver planos com o Licita-VMO <span aria-hidden="true">→</span></a>
+        </article>
+
+        <span class="absolute left-1/2 top-1/2 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center bg-ciano text-2xl font-extrabold text-abismo ring-8 ring-nevoa lg:grid" aria-hidden="true">+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="scroll-mt-20 border-t border-linha bg-white">
+    <div class="wrap py-16 md:py-24">
+      <div class="max-w-[60ch]">
+        <p class="rotulo-sec">Como funciona</p>
+        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Do edital publicado ao lance, sem perder prazo.</h2>
+      </div>
+      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+        @for (e of etapas; track e.t; let i = $index) {
+          <li class="chanfro revelar flex flex-col bg-nevoa p-5">
+            <div class="flex items-center gap-3">
+              <span class="num grid h-10 w-10 place-items-center bg-petroleo text-lg text-ciano">{{ i + 1 }}</span>
+              <h3 class="subtitulo text-[1.35rem]">{{ e.t }}</h3>
+            </div>
+            <p class="mt-4 flex-1 text-[.93rem] leading-relaxed text-tinta-2">{{ e.d }}</p>
+            <p class="mt-4 border-l-[3px] border-pentagono bg-white px-3 py-2 text-[.84rem] font-semibold text-tinta">{{ e.r }}</p>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- O QUE CHEGA -->
+  <section class="escuro grade-fundo relative overflow-hidden bg-abismo text-claro">
+    <div class="wrap grid items-center gap-12 py-16 md:py-24 lg:grid-cols-[.9fr_1.1fr]">
+      <div>
+        <p class="rotulo-sec">O que chega para você</p>
+        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Cem páginas de edital viram dois minutos de áudio.</h2>
+        <p class="mt-5 max-w-[50ch] text-lg text-claro-2">Cada licitação compatível chega com o que importa para decidir: prazos, exigências com a página de onde saíram e o que falta nos seus documentos.</p>
+        <p class="mt-6 max-w-[56ch] border-l-4 border-ambar pl-4 text-sm text-claro-2"><b class="text-ambar">A IA aponta, a pessoa confere.</b> Toda exigência vem com a página do edital, e a busca usa fontes oficiais de dados abertos.</p>
+      </div>
+
+      <div class="relative">
+        <div class="brilho pointer-events-none absolute -inset-8" aria-hidden="true"></div>
+        <div class="chanfro chanfro-g relative bg-white text-tinta">
+          <div class="flex items-center justify-between gap-4 bg-petroleo px-5 py-3 text-claro">
+            <div><b class="block text-[.95rem]">Pregão eletrônico 045/2026</b><small class="text-xs text-claro-suave">Prefeitura de Exemplo. PDF de 96 páginas, lido em 1min48s</small></div>
+            <span class="selo bg-ciano text-abismo">Compatível</span>
+          </div>
+          <div class="grid gap-4 p-5 text-[.86rem]">
+            <div class="flex items-center gap-4 bg-[#E3F4F5] px-4 py-3">
+              <span class="num text-[2.2rem] text-pentagono">8/9</span>
+              <p class="text-tinta-2">documentos de habilitação já estão no cofre. Falta renovar a certidão federal.</p>
+            </div>
+            <div>
+              <p class="rotulo mb-2 text-pentagono">Prazos</p>
+              <table class="w-full">
+                <tr><td class="py-1">Esclarecimentos até 31/10</td><td class="text-right text-xs font-bold text-pentagono">pág. 4</td></tr>
+                <tr><td class="py-1">Impugnação até 03/11</td><td class="text-right text-xs font-bold text-pentagono">pág. 4</td></tr>
+                <tr><td class="py-1">Sessão pública em 10/11, 9h</td><td class="text-right text-xs font-bold text-pentagono">pág. 1</td></tr>
+              </table>
+            </div>
+            <div class="border-t border-linha pt-4">
+              <p class="rotulo mb-2 text-pentagono">Atenção</p>
+              <ul class="grid gap-1.5">
+                <li class="flex gap-3 bg-ambar-fundo px-3 py-1.5"><b class="text-ambar-texto">!</b><span class="flex-1">Atestado precisa comprovar 50% da quantidade do lote 3</span><span class="text-xs font-bold text-pentagono">pág. 23</span></li>
+                <li class="flex gap-3 bg-ambar-fundo px-3 py-1.5"><b class="text-ambar-texto">!</b><span class="flex-1">Amostra em até 2 dias úteis após a sessão</span><span class="text-xs font-bold text-pentagono">pág. 31</span></li>
+                <li class="flex gap-3 bg-ambar-fundo px-3 py-1.5"><b class="text-ambar-texto">!</b><span class="flex-1">Lotes 1 a 4 exclusivos para ME e EPP</span><span class="text-xs font-bold text-pentagono">pág. 7</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="escuro bg-petroleo text-claro">
+    <div class="wrap py-16 md:py-24">
+      <p class="rotulo-sec">Diferenciais</p>
+      <h2 class="titulo mt-3 max-w-[28ch] text-[clamp(1.8rem,3vw,2.8rem)]">O que você não encontra nos outros radares.</h2>
+      <ol class="mt-12 grid gap-5 md:grid-cols-2">
+        @for (d of diferenciais; track d.t; let i = $index) {
+          <li class="chanfro levanta revelar grid grid-cols-[auto_1fr] gap-5 bg-petroleo-2 p-6 hover:bg-petroleo-3 sm:p-8">
+            <span class="grid h-12 w-12 place-items-center bg-[rgba(53,208,211,.12)] text-ciano" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path [attr.d]="d.i"/></svg>
+            </span>
+            <div>
+              <p class="num text-sm text-ciano">0{{ i + 1 }}</p>
+              <h3 class="subtitulo mt-1 text-[1.3rem]">{{ d.t }}</h3>
+              <p class="mt-2 text-[.95rem] leading-relaxed text-claro-2">{{ d.d }}</p>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="planos" class="scroll-mt-20 bg-nevoa">
+    <div class="wrap py-16 md:py-24">
+      <div class="mx-auto max-w-[60ch] text-center">
+        <p class="rotulo-sec">Planos</p>
+        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Mensal, por CNPJ, sem fidelidade.</h2>
+        <p class="mt-4 text-lg text-tinta-2">Crie a conta, escolha o plano e pague por Pix, boleto ou cartão. O acesso é liberado assim que o pagamento é confirmado.</p>
+      </div>
+      <div class="mt-12 grid items-stretch gap-5 md:grid-cols-3">
+        @for (p of portal.planos(); track p.id) { <div class="levanta revelar"><app-plano-card [plano]="p" /></div> }
+      </div>
+      <p class="mt-8 text-center text-sm text-tinta-suave">Quer comparar recurso por recurso? <a routerLink="/planos" class="font-bold text-pentagono underline">Veja a tabela completa</a>.</p>
+    </div>
+  </section>
+
+  <!-- DÚVIDAS -->
+  <section id="duvidas" class="scroll-mt-20 border-t border-linha bg-white">
+    <div class="wrap grid gap-10 py-16 md:py-24 lg:grid-cols-[.7fr_1.3fr]">
+      <div>
+        <p class="rotulo-sec">Dúvidas</p>
+        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Dúvidas frequentes</h2>
+        <p class="mt-4 text-tinta-2">Não achou a resposta? <a [href]="whatsDuvida" target="_blank" rel="noopener" class="font-semibold text-pentagono underline" aria-label="Fale com a gente pelo WhatsApp (abre em nova aba)">Fale com a gente pelo WhatsApp</a>.</p>
+      </div>
+      <div class="grid gap-3">
+        @for (d of duvidas; track d.p) {
+          <details class="chanfro group bg-nevoa px-5 open:bg-nevoa-2">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-[1.05rem] font-bold [&::-webkit-details-marker]:hidden">
+              {{ d.p }}
+              <span class="grid h-8 w-8 shrink-0 place-items-center bg-white text-lg text-pentagono transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-[70ch] pb-6 leading-relaxed text-tinta-2">{{ d.r }}</p>
+          </details>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="escuro bg-nevoa">
+    <div class="wrap pb-16 md:pb-24 pt-2">
+      <div class="chanfro chanfro-g grade-fundo relative overflow-hidden bg-abismo px-6 py-12 text-claro sm:px-12 md:py-16">
+        <svg class="pointer-events-none absolute -bottom-24 -right-16 h-[340px] w-[340px] opacity-[.12]" viewBox="0 0 600 600" aria-hidden="true"><polygon points="300,20 580,224 473,553 127,553 20,224" fill="none" stroke="#35D0D3" stroke-width="12"/></svg>
+        <div class="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <div>
+            <h2 class="titulo max-w-[22ch] text-[clamp(1.8rem,3vw,2.6rem)]">Comece hoje. O primeiro alerta chega amanhã às 6h.</h2>
+            <p class="mt-3 text-claro-2">Sem taxa de adesão e sem fidelidade. Cancele pelo painel quando quiser.</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a routerLink="/planos" class="btn btn-ciano px-7 py-3.5 text-base">Escolher plano</a>
+            <a routerLink="/cadastro" class="btn btn-fantasma px-7 py-3.5 text-base">Criar conta</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<app-site-footer />
