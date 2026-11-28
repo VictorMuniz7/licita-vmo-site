@@ -34,15 +34,15 @@ import { Logo } from './logo';
         <div>
           <p class="rotulo text-ciano mb-3">Contato</p>
           <ul class="grid gap-2 text-sm">
-            <li><a [href]="'https://wa.me/' + whats" target="_blank" rel="noopener" class="hover:text-ciano">WhatsApp comercial</a></li>
+            <li><a [href]="'https://wa.me/' + whats" target="_blank" rel="noopener" class="hover:text-ciano">WhatsApp (44) 9822-7263</a></li>
+            <li><a [href]="'https://wa.me/' + whats2" target="_blank" rel="noopener" class="hover:text-ciano">WhatsApp (18) 98170-9943</a></li>
             <li><a [href]="'mailto:' + email" class="hover:text-ciano">{{ email }}</a></li>
             <li>Maringá, PR</li>
           </ul>
         </div>
       </div>
-      <div class="wrap flex flex-wrap justify-between gap-3 border-t border-[rgba(53,208,211,.14)] py-6 text-xs text-claro-suave">
+      <div class="wrap border-t border-[rgba(53,208,211,.14)] py-6 text-xs text-claro-suave">
         <span>© {{ ano }} VMO Sistemas. Todos os direitos reservados.</span>
-        <a href="https://vmosistemas.com.br" target="_blank" rel="noopener" class="hover:text-ciano">vmosistemas.com.br</a>
       </div>
     </footer>
   `,
@@ -51,6 +51,7 @@ export class SiteFooter {
   protected ano = new Date().getFullYear();
   protected licitaUrl = config.licitaVmoUrl;
   protected whats = config.whatsappComercial;
+  protected whats2 = config.whatsappComercial2;
   protected email = config.emailContato;
   /** pré-lançamento: sem links de conta */
   protected vendasAbertas = config.vendasAbertas;

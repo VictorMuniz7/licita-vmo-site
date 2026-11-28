@@ -10,8 +10,10 @@ export const config = {
   /** Endereço do sistema Licita-VMO (site separado, mesmo banco). */
   licitaVmoUrl: 'https://app.licitavmo.com.br',
 
-  /** WhatsApp comercial da VMO, só números com DDI. */
-  whatsappComercial: '5544999999999',
+  /** WhatsApp comercial da VMO, só números com DDI. É o número usado nos botões do site. */
+  whatsappComercial: '554498227263',
+  /** Segundo WhatsApp, mostrado no rodapé. */
+  whatsappComercial2: '5518981709943',
   emailContato: 'contato@vmosistemas.com.br',
 
   /**
