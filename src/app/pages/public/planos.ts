@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { config } from '../../core/config';
 import { PortalService } from '../../core/portal.service';
 import { PlanoCard } from '../../shared/plano-card';
 import { SiteFooter } from '../../shared/site-footer';
@@ -17,6 +18,9 @@ import { SiteHeader } from '../../shared/site-header';
           <p class="rotulo text-ciano">Planos e preços</p>
           <h1 class="display mt-4 max-w-[18ch] text-[clamp(2.4rem,4.6vw,4.2rem)]">Escolha como sua empresa vai licitar.</h1>
           <p class="mt-5 max-w-[56ch] text-lg text-claro-2">Valores mensais por CNPJ. Sem taxa de adesão, sem fidelidade. Pix, boleto ou cartão.</p>
+          @if (!vendasAbertas) {
+            <p class="mt-6 inline-flex items-center gap-2 bg-[rgba(53,208,211,.1)] px-3 py-1.5 text-sm font-bold text-ciano ring-1 ring-inset ring-[rgba(53,208,211,.25)]">Lançamento em breve: as contratações ainda não estão abertas.</p>
+          }
         </div>
       </section>
 
@@ -60,7 +64,7 @@ import { SiteHeader } from '../../shared/site-header';
             </div>
           </div>
 
-          <div class="mt-14 grid gap-5 md:grid-cols-3">
+          <div class="mt-14 grid gap-5" [class]="vendasAbertas ? 'md:grid-cols-3' : 'md:grid-cols-2'">
             <div class="cartao">
               <p class="subtitulo text-lg">Como funciona a compra</p>
               <ol class="mt-3 grid gap-2 text-sm text-tinta-2">
@@ -74,11 +78,13 @@ import { SiteHeader } from '../../shared/site-header';
               <p class="subtitulo text-lg">Trocar de plano</p>
               <p class="mt-3 text-sm text-tinta-2">Pelo painel, a qualquer momento. O novo valor vale a partir da próxima fatura.</p>
             </div>
-            <div class="cartao">
-              <p class="subtitulo text-lg">Já é cliente?</p>
-              <p class="mt-3 text-sm text-tinta-2">Gerencie usuários, faturas e o perfil do radar no painel.</p>
-              <a [routerLink]="auth.logado() ? '/painel' : '/entrar'" class="btn btn-escuro btn-sm mt-4">{{ auth.logado() ? 'Ir para o painel' : 'Entrar' }}</a>
-            </div>
+            @if (vendasAbertas) {
+              <div class="cartao">
+                <p class="subtitulo text-lg">Já é cliente?</p>
+                <p class="mt-3 text-sm text-tinta-2">Gerencie usuários, faturas e o perfil do radar no painel.</p>
+                <a [routerLink]="auth.logado() ? '/painel' : '/entrar'" class="btn btn-escuro btn-sm mt-4">{{ auth.logado() ? 'Ir para o painel' : 'Entrar' }}</a>
+              </div>
+            }
           </div>
         </div>
       </section>
@@ -89,14 +95,20 @@ import { SiteHeader } from '../../shared/site-header';
 export class Planos implements OnInit {
   protected portal = inject(PortalService);
   protected auth = inject(AuthService);
+  protected vendasAbertas = config.vendasAbertas;
 
   protected linhas = [
     { t: 'Alertas de licitações filtrados', ok: (p: { includes_radar: boolean }) => p.includes_radar },
     { t: 'Resumo do edital em texto e áudio no WhatsApp', ok: (p: { includes_radar: boolean }) => p.includes_radar },
     { t: 'Lembretes de prazo', ok: (p: { includes_radar: boolean; includes_licita: boolean }) => p.includes_radar || p.includes_licita },
     { t: 'Cofre de certidões', ok: () => true },
-    { t: 'Gestão de processos com a equipe', ok: (p: { includes_licita: boolean }) => p.includes_licita },
-    { t: 'Proposta em PDF', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Gestão de licitações com status e prazos', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Itens importados de planilha Excel, com histórico de preço', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Proposta e declarações em PDF', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Atas, contratos e anexos por licitação', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Relatórios de ganhas, perdidas e contratantes', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Dashboard, metas e entregas', ok: (p: { includes_licita: boolean }) => p.includes_licita },
+    { t: 'Perfis de acesso e trilha de auditoria', ok: (p: { includes_licita: boolean }) => p.includes_licita },
     { t: 'Até 4 usuários no Licita-VMO', ok: (p: { includes_licita: boolean }) => p.includes_licita },
     { t: 'Licitação do radar vira processo com um toque', ok: (p: { includes_radar: boolean; includes_licita: boolean }) => p.includes_radar && p.includes_licita },
     { t: 'Compatibilidade pelos atestados', ok: (p: { includes_radar: boolean; includes_licita: boolean }) => p.includes_radar && p.includes_licita },

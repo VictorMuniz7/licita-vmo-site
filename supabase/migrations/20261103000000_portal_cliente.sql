@@ -30,7 +30,7 @@ insert into public.plans (id, name, tagline, price_cents, includes_radar, includ
    false, 1),
   -- PREÇO PROVISÓRIO: ajuste price_cents quando o valor do Licita-VMO for definido
   ('licita', 'Licita-VMO', 'Gestão completa dos processos de licitação da empresa', 19700, false, true,
-   '["Processos, prazos e equipe num lugar só","Proposta em PDF gerada pelo sistema","Cofre de certidões com alerta de vencimento","Trilha de auditoria por usuário","Até 4 usuários com acesso"]'::jsonb,
+   '["Licitações, itens e prazos da equipe num lugar só","Proposta e declarações em PDF","Atas, contratos e anexos guardados","Relatórios de ganhas, perdidas e contratantes","Cofre de certidões com alerta de vencimento","Até 4 usuários com perfis e auditoria"]'::jsonb,
    false, 2),
   ('combo', 'Radar + Gestão', 'Do alerta no WhatsApp à proposta pronta', 24700, true, true,
    '["Tudo do Radar e do Licita-VMO","Licitação encontrada vira processo com um toque","Compatibilidade pelos atestados e certidões","Aviso de quais licitações cada certidão vencida trava","Até 4 usuários com acesso"]'::jsonb,

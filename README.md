@@ -21,6 +21,7 @@ Com `supabaseUrl` vazio em `src/app/core/config.ts`, o site roda com dados de ex
 | `/` | Landing: serviços, como funciona, diferenciais, planos, dúvidas |
 | `/planos` | Planos e tabela comparativa |
 | `/cadastro`, `/entrar`, `/recuperar-senha`, `/definir-senha` | Conta do titular; `/definir-senha` também recebe os convites dos usuários |
+| `/em-breve` | Aviso de lançamento em breve (enquanto `vendasAbertas` for `false`) |
 | `/contratar/:plano` | Dados da empresa (CNPJ validado) → fatura do Asaas (Pix, boleto ou cartão) |
 | `/painel` | Serviços ativos, situação da assinatura, próximos passos |
 | `/painel/usuarios` | Convidar, desativar, reativar, remover e reenviar acesso (máx. 4 contando o titular) |
@@ -58,6 +59,12 @@ supabase functions deploy asaas-webhook --no-verify-jwt
 
 ### 4. Front
 Preencha `src/app/core/config.ts` (URL e anon key do Supabase, endereço do Licita-VMO, WhatsApp e e-mail) e:
+
+> **Pré-lançamento:** com `vendasAbertas: false` (padrão atual), todo botão de contratar e todo acesso a `/contratar/...`
+> mostram a página `/em-breve`, com volta para a página principal e um "Quero ser avisado" pelo WhatsApp.
+> Os botões e links de Entrar e Criar conta ficam escondidos, e `/entrar`, `/cadastro` e `/painel` também levam a `/em-breve`.
+> No dia do lançamento, troque para `true`. Para testar o painel no modo demonstração, troque para `true` também.
+
 ```bash
 npm run build      # sai em dist/licita-vmo-site/browser
 ```

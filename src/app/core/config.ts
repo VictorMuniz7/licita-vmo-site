@@ -13,6 +13,12 @@ export const config = {
   /** WhatsApp comercial da VMO, só números com DDI. */
   whatsappComercial: '5544999999999',
   emailContato: 'contato@vmosistemas.com.br',
+
+  /**
+   * false = pré-lançamento: os botões de contratar mostram "Lançamento em breve" em vez de
+   * levar ao cadastro e ao pagamento. Troque para true no dia do lançamento.
+   */
+  vendasAbertas: false,
 };
 
 export const MODO_DEMO = !config.supabaseUrl;

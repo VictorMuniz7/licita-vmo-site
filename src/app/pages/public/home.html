@@ -15,16 +15,16 @@
           Para empresas que vendem para o governo
         </p>
         <h1 class="display text-[clamp(2.3rem,4.3vw,4.1rem)]">
-          As licitações que a sua empresa pode ganhar, <span class="text-ciano">no seu WhatsApp.</span>
+          Do edital no WhatsApp ao contrato assinado, <span class="text-ciano">num lugar só.</span>
         </h1>
-        <p class="mt-6 max-w-[54ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-claro-2">
-          Todo dia de manhã você recebe os editais do seu ramo e da sua região, resumidos em texto e em áudio,
-          com o que falta nos seus documentos. A sua equipe organiza processo, certidões e proposta no Licita-VMO.
-          Contrate um ou os dois, online, sem fidelidade.
+        <p class="mt-6 max-w-[56ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-claro-2">
+          O <b class="text-claro">Radar</b> encontra os editais do seu ramo e da sua região e manda o resumo no WhatsApp, em texto e em áudio.
+          O <b class="text-claro">Licita-VMO</b> organiza o resto: itens, proposta em PDF, atas, contratos e relatórios do que a empresa ganhou e perdeu.
+          Contrate um ou os dois, sem fidelidade.
         </p>
         <div class="mt-9 flex flex-wrap gap-3">
           <a routerLink="/planos" class="btn btn-ciano px-7 py-3.5 text-base">
-            Ver planos e contratar
+            Ver planos
             <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a routerLink="/" fragment="como-funciona" class="btn btn-fantasma px-7 py-3.5 text-base">Como funciona</a>
@@ -153,7 +153,7 @@
           </div>
           <div>
             <h3 class="subtitulo text-[1.8rem]">Licita-VMO</h3>
-            <p class="mt-2 text-claro-2">Onde a sua equipe organiza cada licitação, do edital à entrega: processos, prazos, documentos e propostas.</p>
+            <p class="mt-2 text-claro-2">O sistema onde a sua equipe controla cada licitação, do cadastro do edital ao contrato: itens, prazos, propostas, documentos e resultados.</p>
           </div>
           <ul class="grid gap-3 border-t border-[rgba(53,208,211,.16)] pt-6 text-[.95rem] text-claro-2 sm:grid-cols-2">
             @for (f of recursosLicita; track f) {
@@ -162,7 +162,7 @@
               </li>
             }
           </ul>
-          <a routerLink="/planos" class="inline-flex items-center gap-2 font-bold text-ciano hover:text-claro">Ver planos com o Licita-VMO <span aria-hidden="true">→</span></a>
+          <a routerLink="/" fragment="licita-vmo" class="inline-flex items-center gap-2 font-bold text-ciano hover:text-claro">Ver o Licita-VMO por dentro <span aria-hidden="true">→</span></a>
         </article>
 
         <span class="absolute left-1/2 top-1/2 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center bg-ciano text-2xl font-extrabold text-abismo ring-8 ring-nevoa lg:grid" aria-hidden="true">+</span>
@@ -175,14 +175,16 @@
     <div class="wrap py-16 md:py-24">
       <div class="max-w-[60ch]">
         <p class="rotulo-sec">Como funciona</p>
-        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Do edital publicado ao lance, sem perder prazo.</h2>
+        <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Do edital publicado ao contrato assinado, sem perder prazo.</h2>
+        <p class="mt-4 text-lg text-tinta-2">As três primeiras etapas são do Radar. As três últimas acontecem no Licita-VMO, com a sua equipe.</p>
       </div>
-      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         @for (e of etapas; track e.t; let i = $index) {
           <li class="chanfro revelar flex flex-col bg-nevoa p-5">
             <div class="flex items-center gap-3">
-              <span class="num grid h-10 w-10 place-items-center bg-petroleo text-lg text-ciano">{{ i + 1 }}</span>
+              <span class="num grid h-10 w-10 place-items-center text-lg" [class]="i < 3 ? 'bg-petroleo text-ciano' : 'bg-ciano text-abismo'">{{ i + 1 }}</span>
               <h3 class="subtitulo text-[1.35rem]">{{ e.t }}</h3>
+              <span class="ml-auto text-[.7rem] font-bold uppercase tracking-wider text-tinta-suave">{{ i < 3 ? 'Radar' : 'Licita-VMO' }}</span>
             </div>
             <p class="mt-4 flex-1 text-[.93rem] leading-relaxed text-tinta-2">{{ e.d }}</p>
             <p class="mt-4 border-l-[3px] border-pentagono bg-white px-3 py-2 text-[.84rem] font-semibold text-tinta">{{ e.r }}</p>
@@ -236,11 +238,77 @@
     </div>
   </section>
 
+  <!-- LICITA-VMO POR DENTRO -->
+  <section id="licita-vmo" class="scroll-mt-20 bg-white">
+    <div class="wrap py-16 md:py-24">
+      <div class="grid items-center gap-12 lg:grid-cols-[.85fr_1.15fr]">
+        <div>
+          <p class="rotulo-sec">Licita-VMO por dentro</p>
+          <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Depois do alerta, cada licitação fica sob controle.</h2>
+          <p class="mt-5 max-w-[52ch] text-lg text-tinta-2">
+            Planilha solta, PDF perdido no e-mail e prazo anotado no papel saem de cena. No Licita-VMO a equipe inteira trabalha sobre a
+            mesma informação: do cadastro do edital à proposta, da sessão ao contrato e à entrega.
+          </p>
+          <ul class="mt-7 grid gap-3 text-[.98rem] text-tinta-2">
+            <li class="marcador"><b class="text-tinta">Funciona sozinho.</b> Não precisa do Radar: cadastre as licitações que a sua empresa já acompanha.</li>
+            <li class="marcador"><b class="text-tinta">Com o Radar, chega preenchido.</b> A licitação do WhatsApp vira processo com órgão, objeto e prazos.</li>
+            <li class="marcador"><b class="text-tinta">Até 4 pessoas por CNPJ</b>, cada uma com login próprio e perfil de acesso.</li>
+          </ul>
+        </div>
+
+        <!-- Simulação da tela do sistema -->
+        <figure class="relative">
+          <div class="chanfro chanfro-g bg-petroleo p-1.5 shadow-[0_30px_60px_-30px_rgba(6,20,23,.45)]">
+            <div class="flex items-center gap-2 px-3 py-2.5 text-claro">
+              <span class="h-2.5 w-2.5 bg-ciano" aria-hidden="true"></span>
+              <b class="text-[.85rem]">Licitações</b>
+              <span class="ml-auto text-[.72rem] text-claro-suave">Limpa Bem Distribuidora</span>
+            </div>
+            <div class="bg-nevoa p-4 text-tinta sm:p-5">
+              <dl class="grid grid-cols-3 gap-2 sm:gap-3">
+                <div class="bg-white px-3 py-2.5"><dt class="text-[.7rem] text-tinta-suave">Em disputa</dt><dd class="num mt-1 text-[1.6rem]">7</dd></div>
+                <div class="bg-white px-3 py-2.5"><dt class="text-[.7rem] text-tinta-suave">Ganhas no ano</dt><dd class="num mt-1 text-[1.6rem] text-pentagono">12</dd></div>
+                <div class="bg-white px-3 py-2.5"><dt class="text-[.7rem] text-tinta-suave">Contratado no ano</dt><dd class="num mt-1 whitespace-nowrap text-[1.25rem] sm:text-[1.6rem]">R$ 1,2 mi</dd></div>
+              </dl>
+              <ul class="mt-3 grid gap-1.5 text-[.8rem]">
+                @for (l of telaLicitacoes; track l.n) {
+                  <li class="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-0.5 bg-white px-3 py-2.5 sm:grid-cols-[1fr_auto_auto]">
+                    <span class="min-w-0"><b class="block truncate">{{ l.n }}</b><span class="block truncate text-[.72rem] text-tinta-suave">{{ l.o }}</span></span>
+                    <span class="hidden text-[.72rem] text-tinta-2 sm:block">{{ l.p }}</span>
+                    <span class="selo" [class]="l.c">{{ l.s }}</span>
+                  </li>
+                }
+              </ul>
+              <div class="mt-3 flex flex-wrap gap-2 text-[.72rem]">
+                <span class="bg-petroleo px-2.5 py-1 font-bold text-ciano">Proposta em PDF gerada</span>
+                <span class="bg-white px-2.5 py-1 font-semibold text-tinta-2 ring-1 ring-inset ring-linha">Itens importados do Excel</span>
+                <span class="bg-white px-2.5 py-1 font-semibold text-tinta-2 ring-1 ring-inset ring-linha">Ata anexada</span>
+              </div>
+            </div>
+          </div>
+          <figcaption class="mt-4 text-center text-xs text-tinta-suave">Simulação com empresa e licitações fictícias.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="mt-16 grid gap-px bg-linha ring-1 ring-linha sm:grid-cols-2 lg:grid-cols-4">
+        @for (m of modulosLicita; track m.t) {
+          <li class="revelar grid content-start gap-3 bg-white p-6">
+            <span class="grid h-11 w-11 place-items-center bg-nevoa text-pentagono" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-[22px] w-[22px]" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path [attr.d]="m.i"/></svg>
+            </span>
+            <h3 class="subtitulo text-[1.12rem]">{{ m.t }}</h3>
+            <p class="text-[.92rem] leading-relaxed text-tinta-2">{{ m.d }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
   <!-- DIFERENCIAIS -->
   <section class="escuro bg-petroleo text-claro">
     <div class="wrap py-16 md:py-24">
       <p class="rotulo-sec">Diferenciais</p>
-      <h2 class="titulo mt-3 max-w-[28ch] text-[clamp(1.8rem,3vw,2.8rem)]">O que você não encontra nos outros radares.</h2>
+      <h2 class="titulo mt-3 max-w-[28ch] text-[clamp(1.8rem,3vw,2.8rem)]">O que você não encontra nos outros sistemas de licitação.</h2>
       <ol class="mt-12 grid gap-5 md:grid-cols-2">
         @for (d of diferenciais; track d.t; let i = $index) {
           <li class="chanfro levanta revelar grid grid-cols-[auto_1fr] gap-5 bg-petroleo-2 p-6 hover:bg-petroleo-3 sm:p-8">
@@ -264,7 +332,11 @@
       <div class="mx-auto max-w-[60ch] text-center">
         <p class="rotulo-sec">Planos</p>
         <h2 class="titulo mt-3 text-[clamp(1.8rem,3vw,2.8rem)]">Mensal, por CNPJ, sem fidelidade.</h2>
-        <p class="mt-4 text-lg text-tinta-2">Crie a conta, escolha o plano e pague por Pix, boleto ou cartão. O acesso é liberado assim que o pagamento é confirmado.</p>
+        @if (vendasAbertas) {
+          <p class="mt-4 text-lg text-tinta-2">Crie a conta, escolha o plano e pague por Pix, boleto ou cartão. O acesso é liberado assim que o pagamento é confirmado.</p>
+        } @else {
+          <p class="mt-4 text-lg text-tinta-2">As contratações abrem no lançamento, em breve. Pagamento por Pix, boleto ou cartão, direto pelo site.</p>
+        }
       </div>
       <div class="mt-12 grid items-stretch gap-5 md:grid-cols-3">
         @for (p of portal.planos(); track p.id) { <div class="levanta revelar"><app-plano-card [plano]="p" /></div> }
@@ -301,14 +373,25 @@
       <div class="chanfro chanfro-g grade-fundo relative overflow-hidden bg-abismo px-6 py-12 text-claro sm:px-12 md:py-16">
         <svg class="pointer-events-none absolute -bottom-24 -right-16 h-[340px] w-[340px] opacity-[.12]" viewBox="0 0 600 600" aria-hidden="true"><polygon points="300,20 580,224 473,553 127,553 20,224" fill="none" stroke="#35D0D3" stroke-width="12"/></svg>
         <div class="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-          <div>
-            <h2 class="titulo max-w-[22ch] text-[clamp(1.8rem,3vw,2.6rem)]">Comece hoje. O primeiro alerta chega amanhã às 6h.</h2>
-            <p class="mt-3 text-claro-2">Sem taxa de adesão e sem fidelidade. Cancele pelo painel quando quiser.</p>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <a routerLink="/planos" class="btn btn-ciano px-7 py-3.5 text-base">Escolher plano</a>
-            <a routerLink="/cadastro" class="btn btn-fantasma px-7 py-3.5 text-base">Criar conta</a>
-          </div>
+          @if (vendasAbertas) {
+            <div>
+              <h2 class="titulo max-w-[22ch] text-[clamp(1.8rem,3vw,2.6rem)]">Comece hoje. O primeiro alerta chega amanhã às 6h.</h2>
+              <p class="mt-3 text-claro-2">Sem taxa de adesão e sem fidelidade. Cancele pelo painel quando quiser.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a routerLink="/planos" class="btn btn-ciano px-7 py-3.5 text-base">Escolher plano</a>
+              <a routerLink="/cadastro" class="btn btn-fantasma px-7 py-3.5 text-base">Criar conta</a>
+            </div>
+          } @else {
+            <div>
+              <h2 class="titulo max-w-[22ch] text-[clamp(1.8rem,3vw,2.6rem)]">Lançamento em breve. Quer saber primeiro?</h2>
+              <p class="mt-3 text-claro-2">Avisamos pelo WhatsApp quando as contratações abrirem. Sem taxa de adesão e sem fidelidade.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <a [href]="whatsAviso" target="_blank" rel="noopener" class="btn btn-ciano px-7 py-3.5 text-base" aria-label="Quero ser avisado do lançamento pelo WhatsApp (abre em nova aba)">Quero ser avisado</a>
+              <a routerLink="/planos" class="btn btn-fantasma px-7 py-3.5 text-base">Ver planos</a>
+            </div>
+          }
         </div>
       </div>
     </div>

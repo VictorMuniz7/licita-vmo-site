@@ -1,5 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { config } from '../core/config';
 import { Plano } from '../core/modelos';
 
 @Component({
@@ -43,7 +44,7 @@ import { Plano } from '../core/modelos';
             {{ rotuloBotao() }}
           </a>
         }
-        <p class="mt-3 text-center text-xs" [class.text-claro-suave]="!plano().highlight" [class.text-petroleo]="plano().highlight">Sem fidelidade. Pix, boleto ou cartão.</p>
+        <p class="mt-3 text-center text-xs" [class.text-claro-suave]="!plano().highlight" [class.text-petroleo]="plano().highlight">{{ vendasAbertas ? 'Sem fidelidade. Pix, boleto ou cartão.' : 'Lançamento em breve. Sem fidelidade.' }}</p>
       </div>
     </article>
   `,
@@ -52,6 +53,8 @@ export class PlanoCard {
   plano = input.required<Plano>();
   atual = input(false);
   rotuloBotao = input('Contratar');
+  /** o botão leva a /contratar, que no pré-lançamento redireciona para /em-breve */
+  protected vendasAbertas = config.vendasAbertas;
 
   protected preco = computed(() => {
     const c = this.plano().price_cents ?? 0;

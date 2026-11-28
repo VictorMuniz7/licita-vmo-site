@@ -1,6 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../core/auth.service';
+import { config } from '../core/config';
 import { PortalService } from '../core/portal.service';
 import { Logo } from './logo';
 
@@ -30,7 +31,7 @@ import { Logo } from './logo';
               </div>
             </div>
           } @else {
-            <a routerLink="/entrar" class="px-3 py-2 text-sm font-semibold text-claro hover:text-ciano">Entrar</a>
+            @if (vendasAbertas) { <a routerLink="/entrar" class="px-3 py-2 text-sm font-semibold text-claro hover:text-ciano">Entrar</a> }
             <a routerLink="/planos" class="btn btn-ciano btn-sm">Contratar</a>
           }
         </div>
@@ -61,8 +62,8 @@ import { Logo } from './logo';
               <a routerLink="/painel" class="btn btn-ciano">Meu painel</a>
             </div>
           } @else {
-            <div class="mt-4 grid grid-cols-2 gap-3">
-              <a routerLink="/entrar" class="btn btn-fantasma">Entrar</a>
+            <div class="mt-4 grid gap-3" [class.grid-cols-2]="vendasAbertas">
+              @if (vendasAbertas) { <a routerLink="/entrar" class="btn btn-fantasma">Entrar</a> }
               <a routerLink="/planos" class="btn btn-ciano">Contratar</a>
             </div>
           }
@@ -76,6 +77,8 @@ export class SiteHeader {
   private portal = inject(PortalService);
   private router = inject(Router);
   protected aberto = signal(false);
+  /** pré-lançamento: sem botão Entrar */
+  protected vendasAbertas = config.vendasAbertas;
 
   /** Nome do cadastro; sem nome, usa a parte do e-mail antes do @. */
   private nome = computed(() => {

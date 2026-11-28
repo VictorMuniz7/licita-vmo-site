@@ -104,8 +104,9 @@ export const PLANOS_PADRAO: Plano[] = [
   {
     id: 'licita', name: 'Licita-VMO', tagline: 'Gestão completa dos processos de licitação da empresa',
     price_cents: 19700, includes_radar: false, includes_licita: true, max_users: 4, highlight: false, sort: 2,
-    features: ['Processos, prazos e equipe num lugar só', 'Proposta em PDF gerada pelo sistema',
-      'Cofre de certidões com alerta de vencimento', 'Trilha de auditoria por usuário', 'Até 4 usuários com acesso'],
+    features: ['Licitações, itens e prazos da equipe num lugar só', 'Proposta e declarações em PDF',
+      'Atas, contratos e anexos guardados', 'Relatórios de ganhas, perdidas e contratantes',
+      'Cofre de certidões com alerta de vencimento', 'Até 4 usuários com perfis e auditoria'],
   },
   {
     id: 'combo', name: 'Radar + Gestão', tagline: 'Do alerta no WhatsApp à proposta pronta',
